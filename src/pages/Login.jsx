@@ -1,49 +1,54 @@
-import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Button } from 'primereact/button';
+import { InputText } from 'primereact/inputtext';
+         
 
-const Login = (props) => {
-  const [email, setEmail] = useState('')
+export const Login = (props) => {
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
 
-  const navigate = useNavigate()
 
   const onButtonClick = () => {
-    // You'll update this function later...
+    console.log("hola");
+    console.log(username);
+    console.log(password);
   }
 
   return (
-    <div className={'mainContainer'}>
-      <div className={'titleContainer'}>
-        <div>Login</div>
-      </div>
-      <br />
-      <div className={'inputContainer'}>
-        <input
-          value={email}
-          placeholder="Enter your email here"
-          onChange={(ev) => setEmail(ev.target.value)}
-          className={'inputBox'}
-        />
-        <label className="errorLabel">{emailError}</label>
-      </div>
-      <br />
-      <div className={'inputContainer'}>
-        <input
-          value={password}
-          placeholder="Enter your password here"
-          onChange={(ev) => setPassword(ev.target.value)}
-          className={'inputBox'}
-        />
-        <label className="errorLabel">{passwordError}</label>
-      </div>
-      <br />
-      <div className={'inputContainer'}>
-        <input className={'inputButton'} type="button" onClick={onButtonClick} value={'Log in'} />
-      </div>
+    <div className="flex align-items-center justify-content-center mt-5">
+    <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+        <div className="text-center mb-5">
+           
+            <div className="text-900 text-3xl font-medium mb-3">Bienvenido(a)</div>
+            <span className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
+            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
+        </div>
+
+        <div>
+            <label htmlFor="username" className="block text-900 font-medium mb-2">Usuario</label>
+            <InputText 
+              id="username" 
+              type="text" 
+              placeholder="Usuario" 
+              value={username} 
+              onChange={e => setUsername(e.target.value)} 
+              className="w-full mb-3" 
+            />
+
+            <label htmlFor="password" className="block text-900 font-medium mb-2">Contraseña</label>
+            <InputText 
+              id="password" 
+              type="password" 
+              placeholder="Contraseña" 
+              value={password} 
+              onChange={e => setPassword(e.target.value)} 
+              className="w-full mb-3" 
+              />
+
+            <Button label="Iniciar sesión" icon="pi pi-user" className="w-full" onClick={onButtonClick}/>
+        </div>
     </div>
+</div>
+ 
   )
 }
-
-export default Login

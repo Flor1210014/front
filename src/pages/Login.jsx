@@ -1,17 +1,32 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
          
 
-export const Login = (props) => {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-
+export const Login = ({setToken}) => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const onButtonClick = () => {
     console.log("hola");
     console.log(username);
     console.log(password);
+
+    if(username !== "" && password !== ""){
+			fetch('/auth/login',{	method: 'POST',	headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+			  },
+			  body: JSON.stringify(
+				  {
+            "username": username,
+            "password": password
+				  }
+			  )})
+	  .then(response => response.json())
+	  .then(data => setToken(data.token));
+    
+		}
   }
 
   return (

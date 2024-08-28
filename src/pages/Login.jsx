@@ -8,14 +8,11 @@ export const Login = ({setToken, setOption}) => {
   const [password, setPassword] = useState('');
 
   const onButtonClick = () => {
-    console.log("hola");
-    console.log(username);
-    console.log(password);
 
     if(username !== "" && password !== ""){
 			fetch('/auth/login',{	method: 'POST',	headers: {
           'Accept': 'application/json',
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
 			  },
 			  body: JSON.stringify(
 				  {
@@ -23,8 +20,8 @@ export const Login = ({setToken, setOption}) => {
             "password": password
 				  }
 			  )})
-	  .then(response => response.json())
-	  .then(data => setToken(data.token));
+	  .then(response => console.log(response.json))
+	  // .then(data => setToken(data.token));
     
 		}
   }

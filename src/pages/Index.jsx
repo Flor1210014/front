@@ -8,7 +8,7 @@ import UsuariosTable from './UsuariosTable';
 
 export const Index = (props) => {
   const [token, setToken] = useState('');
-  const [option, setOption] = useState('usuariosTable');
+  const [option, setOption] = useState('login');
   useEffect(() => {    // Actualiza el título del documento usando la API del navegador    
     if(token !== null){
        console.log(token);

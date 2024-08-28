@@ -22,6 +22,9 @@ export const MenuUsuarios = ({token, setToken, setOption}) => {
         {
             label: 'Contact',
             icon: 'pi pi-envelope',
+            command: () => {
+                setOption('register')
+              }
         }
     ]: [];
     const onButtonClick = () => {

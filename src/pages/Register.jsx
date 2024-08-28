@@ -3,7 +3,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
          
 
-export const Login = ({setToken, setOption}) => {
+export const Register = ({setToken}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -34,9 +34,8 @@ export const Login = ({setToken, setOption}) => {
     <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div className="text-center mb-5">
            
-            <div className="text-900 text-3xl font-medium mb-3">Bienvenido(a)</div>
-            <span className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
-            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={() => setOption('register')}>Registrate</a>
+            <div className="text-900 text-3xl font-medium mb-3">Registro</div>
+
         </div>
 
         <div>

@@ -1,36 +1,29 @@
 
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { Menubar } from 'primereact/menubar'; 
+import { Outlet } from 'react-router-dom';
 
-export const MenuUsuarios = ({token, setToken, setOption}) => {
-    
-    const items = (token) ? [
+
+export const Layout = ({token, setToken, setOption}) => {
+    const items = [
         {
             label: 'Home',
             icon: 'pi pi-home',
-            command: () => {
-                setOption('home')
-              }
+            url: '/home'
         },
         {
             label: 'CRUD Usuarioss',
             icon: 'pi pi-star',
-            command: () => {
-                setOption('usuariosTable')
-              }
+            url: '/usuarios-table'
         },
         {
             label: 'Contact',
             icon: 'pi pi-envelope',
-            command: () => {
-                setOption('register')
-              }
+            url: ''
         }
-    ]: [];
+    ];
+
     const onButtonClick = () => {
-        console.log("hola");
-        
-    
         setToken('');
       }
 
@@ -50,6 +43,7 @@ export const MenuUsuarios = ({token, setToken, setOption}) => {
     return (
         <div className="card">
             <Menubar model={ items } start={start} end={end} />
+            <Outlet />
         </div>
     )
 }

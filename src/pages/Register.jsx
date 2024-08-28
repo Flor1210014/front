@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FloatLabel } from "primereact/floatlabel";
+import { useNavigate } from "react-router-dom";
          
 
-export const Register = ({setToken}) => {
+export const Register = ({setToken, token, setOption}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [nombre, setNombre] = useState('');
@@ -12,28 +13,45 @@ export const Register = ({setToken}) => {
   const [email, setEmail] = useState('');
   const [apellido_paterno, setApellido_paterno] = useState('');
   const [apellido_materno, setApellido_materno] = useState('');
+  const navigate = useNavigate();
+
+  
 
 
   const onButtonClick = () => {
-    console.log("hola");
-    console.log(username);
-    console.log(password);
 
     if(username !== "" && password !== ""){
-			fetch('/auth/login',{	method: 'POST',	headers: {
+			fetch('/auth/register',{	method: 'POST',	headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json',
 			  },
 			  body: JSON.stringify(
 				  {
-            "username": username,
-            "password": password
+                    "login" : username,
+                    "username": username,
+                    "password":password,
+                    "nombre": nombre,
+                    "client": 234,
+                    "email": email,
+                    "fechaalta": "2024-08-26",
+                    "fechabaja": "2024-08-26",
+                    "status": "A",
+                    "intentos":0,
+                    "fecharevocado": "2024-08-26",
+                    "fecha_vigencia": "2024-08-26",
+                    "no_acceso": 1,
+                    "apellido_paterno": apellido_paterno,
+                    "apellido_materno": apellido_materno,
+                    "area": 1,
+                    "fechamodificacion": "2024-08-26",
+                    "role":"ADMIN"
 				  }
 			  )})
-	  .then(response => console.log(response.json))
-	  // .then(data => setToken(data.token));
+	  .then((response) => response.json)
+	   .then((data) => {setToken(data.token); navigate("/home");});
     
 		}
+        
   }
   return (
     <div className="flex align-items-center justify-content-center mt-5">
@@ -94,9 +112,13 @@ export const Register = ({setToken}) => {
                 <label htmlFor="username">Materno</label>
             </FloatLabel>
         </div>
-       
+       <div className="grid ">
+            <div className="col flex justify-content-center p-3">
+                <Button label="Registrar" icon="pi pi-user" className="" onClick={onButtonClick}/>
+            </div>
+       </div>
 
-            <Button label="Registrar" icon="pi pi-user" className="" onClick={onButtonClick}/>
+            
         </div>
     </div>
 </div>

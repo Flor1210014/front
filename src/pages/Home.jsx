@@ -7,9 +7,8 @@ export const Home = (props) => {
   return (
     <>
       <div className="card">
-      <div className="text-900 text-3xl font-medium mt-5">Pagina principal</div>
-        </div>
-     
+      <div className="text-900 text-3xl font-medium mt-5 text-center">Pagina principal</div>
+      </div>
     </>
   )
 }

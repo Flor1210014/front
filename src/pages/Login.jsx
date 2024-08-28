@@ -22,8 +22,8 @@ export const Login = ({setToken, setOption}) => {
             "password": password
 				  }
 			  )})
-	  .then(response => console.log(response.json))
-	  // .then(data => setToken(data.token));
+	  .then(response => response.json)
+	  .then(data => setToken(data.token));
     
 		}
   }
@@ -77,7 +77,7 @@ export const Login = ({setToken, setOption}) => {
                                     <div className="mt-3">
                                         <span
                                             className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
-                                        <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
+                                        <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={() => setOption('register')}>Registrate</a>
                                     </div>
                                 </div>
                             </div>

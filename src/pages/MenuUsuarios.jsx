@@ -1,26 +1,29 @@
 
 import React from 'react';
-import { Menubar } from 'primereact/menubar';
-import { InputText } from 'primereact/inputtext';
-import { Badge } from 'primereact/badge';
-import { Avatar } from 'primereact/avatar';  
+import { Menubar } from 'primereact/menubar'; 
 
-export const MenuUsuarios = ({token, setToken}) => {
+export const MenuUsuarios = ({token, setToken, setOption}) => {
     
-    const items = [
+    const items = (token) ? [
         {
             label: 'Home',
-            icon: 'pi pi-home'
+            icon: 'pi pi-home',
+            command: () => {
+                setOption('home')
+              }
         },
         {
-            label: 'Features',
-            icon: 'pi pi-star'
+            label: 'CRUD Usuarioss',
+            icon: 'pi pi-star',
+            command: () => {
+                setOption('usuariosTable')
+              }
         },
         {
             label: 'Contact',
             icon: 'pi pi-envelope',
         }
-    ];
+    ]: [];
     const onButtonClick = () => {
         console.log("hola");
         
@@ -33,7 +36,7 @@ export const MenuUsuarios = ({token, setToken}) => {
         <div className="flex align-items-center gap-2">
             {token !== '' 
             ? <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={onButtonClick}>Cerrar sesión</a>
-            : <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" >Iniciar sesión</a>
+            : <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={() => {setOption('login')}}>Iniciar sesión</a>
             }
              
         </div>
@@ -43,7 +46,7 @@ export const MenuUsuarios = ({token, setToken}) => {
 
     return (
         <div className="card">
-            <Menubar model={(token) ? items : ""} start={start} end={end} />
+            <Menubar model={ items } start={start} end={end} />
         </div>
     )
 }

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
-         
+import { Card } from 'primereact/card';
+
+
 
 export const Login = ({setToken, setOption}) => {
   const [username, setUsername] = useState('');
@@ -33,34 +35,92 @@ export const Login = ({setToken, setOption}) => {
            
             <div className="text-900 text-3xl font-medium mb-3">Bienvenido(a)</div>
             <span className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
-            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={() => setOption('register')}>Registrate</a>
+            <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
         </div>
 
-        <div>
-            <label htmlFor="username" className="block text-900 font-medium mb-2">Usuario</label>
-            <InputText 
-              id="username" 
-              type="text" 
-              placeholder="Usuario" 
-              value={username} 
-              onChange={e => setUsername(e.target.value)} 
-              className="w-full mb-3" 
-            />
 
-            <label htmlFor="password" className="block text-900 font-medium mb-2">Contraseña</label>
-            <InputText 
-              id="password" 
-              type="password" 
-              placeholder="Contraseña" 
-              value={password} 
-              onChange={e => setPassword(e.target.value)} 
-              className="w-full mb-3" 
-              />
+                        <div className="col-6 p-5">
+                            <div className="text-center">
+                                <i className="pi pi-sign-in" style={{fontSize: '2.5rem'}}></i>
+                                <h1 className="m-0">Bienvenido(a) al Sistema.</h1>
+                                <p className="mt-2">Ingresa las credenciales proporcionadas para poder iniciar
+                                    sesión.</p>
+                            </div>
 
-            <Button label="Iniciar sesión" icon="pi pi-user" className="w-full" onClick={onButtonClick}/>
+                            <div className="grid flex justify-content-center mt-5">
+                                <div className="col-6">
+                                    <h4 className="m-1">Usuario</h4>
+                                    <InputText
+                                        id="username"
+                                        type="text"
+                                        placeholder="Usuario"
+                                        value={username}
+                                        onChange={e => setUsername(e.target.value)}
+                                        className="w-full"
+                                    />
+                                </div>
+                            </div>
+
+                            <div className="grid flex justify-content-center">
+                                <div className="col-6">
+                                    <h4 className="m-1">Contraseña</h4>
+                                    <InputText
+                                        id="password"
+                                        type="password"
+                                        placeholder="Contraseña"
+                                        value={password}
+                                        onChange={e => setPassword(e.target.value)}
+                                        className="w-full mb-3"
+                                    />
+                                    <Button label="Iniciar sesión" icon="pi pi-user" className="w-full" onClick={onButtonClick}/>
+
+                                    <div className="mt-3">
+                                        <span
+                                            className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
+                                        <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </Card>
+            </div>
         </div>
-    </div>
-</div>
+      </>
+//     <div className="flex align-items-center justify-content-center mt-5">
+//     <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
+//         <div className="text-center mb-5">
+//
+//             <div className="text-900 text-3xl font-medium mb-3">Bienvenido(a)</div>
+//             <span className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
+//             <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer">Registrate</a>
+//         </div>
+//
+//         <div>
+//             <label htmlFor="username" className="block text-900 font-medium mb-2">Usuario</label>
+//             <InputText
+//               id="username"
+//               type="text"
+//               placeholder="Usuario"
+//               value={username}
+//               onChange={e => setUsername(e.target.value)}
+//               className="w-full mb-3"
+//             />
+//
+//             <label htmlFor="password" className="block text-900 font-medium mb-2">Contraseña</label>
+//             <InputText
+//               id="password"
+//               type="password"
+//               placeholder="Contraseña"
+//               value={password}
+//               onChange={e => setPassword(e.target.value)}
+//               className="w-full mb-3"
+//               />
+//
+//             <Button label="Iniciar sesión" icon="pi pi-user" className="w-full" onClick={onButtonClick}/>
+//         </div>
+//     </div>
+// </div>
  
   )
 }

@@ -2,29 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Card } from 'primereact/card';
+import { useNavigate } from "react-router-dom";
 
 
 
 export const Login = ({setToken, setOption}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
 
   const onButtonClick = () => {
 
     if(username !== "" && password !== ""){
 			fetch('/auth/login',{	method: 'POST',	headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-			  },
-			  body: JSON.stringify(
-				  {
-            "username": username,
-            "password": password
-				  }
-			  )})
-	  .then(response => response.json)
-	  .then(data => setToken(data.token));
-    
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(
+                        {
+                    "username": username,
+                    "password": password
+                        }
+                    )})
+            .then(response => response.json)
+            .then(data => {setToken(data.token); navigate('/home');});
 		}
   }
 

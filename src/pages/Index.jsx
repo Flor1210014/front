@@ -41,9 +41,7 @@ export const Index = (props) => {
     <>
       <div className="card">
             <Layout token={token} setToken={setToken}  setOption={setOption}/>
-            <main>
-        
-      </main>
+            
         </div>
      
     </>

@@ -21,7 +21,7 @@ function App() {
       <PrimeReactProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout />}>
+          <Route path="/" element={<Layout token={token} setToken={setToken}  setOption={setOption} />}>
             <Route path="/home" element={<Home />} />
             <Route path="/login" element={<Login setToken={setToken} setOption={setOption}/>} />
             <Route path="/registro" element={<Register setToken={setToken} token={token} setOption={setOption}/>} />

@@ -13,6 +13,7 @@ export const Register = ({setToken, token, setOption}) => {
   const [email, setEmail] = useState('');
   const [apellido_paterno, setApellido_paterno] = useState('');
   const [apellido_materno, setApellido_materno] = useState('');
+  const [title, setTitle] = useState('Registrar');
   const navigate = useNavigate();
 
   
@@ -58,7 +59,7 @@ export const Register = ({setToken, token, setOption}) => {
     <div className="surface-card p-4 shadow-2 border-round w-full lg:w-6">
         <div className="text-center mb-5">
            
-            <div className="text-900 text-3xl font-medium mb-3">Registro</div>
+            <div className="text-900 text-3xl font-medium mb-3">{title}</div>
 
         </div>
 
@@ -114,7 +115,7 @@ export const Register = ({setToken, token, setOption}) => {
         </div>
        <div className="grid ">
             <div className="col flex justify-content-center p-3">
-                <Button label="Registrar" icon="pi pi-user" className="" onClick={onButtonClick}/>
+                <Button label={title} icon="pi pi-user" className="" onClick={onButtonClick}/>
             </div>
        </div>
 

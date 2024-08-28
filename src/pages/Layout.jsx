@@ -2,9 +2,11 @@
 import React, {useEffect, useState} from 'react';
 import { Menubar } from 'primereact/menubar'; 
 import { Outlet } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 export const Layout = ({token, setToken, setOption}) => {
+    const navigate = useNavigate();
     const items = [
         {
             label: 'Home',
@@ -12,14 +14,14 @@ export const Layout = ({token, setToken, setOption}) => {
             url: '/home'
         },
         {
-            label: 'CRUD Usuarioss',
+            label: 'Gestion',
             icon: 'pi pi-star',
-            url: '/usuarios-table'
+            url: '/registro'
         },
         {
-            label: 'Contact',
+            label: 'Tablero',
             icon: 'pi pi-envelope',
-            url: ''
+            url: '/usuarios-table'
         }
     ];
 
@@ -32,7 +34,7 @@ export const Layout = ({token, setToken, setOption}) => {
         <div className="flex align-items-center gap-2">
             {token !== '' 
             ? <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={onButtonClick}>Cerrar sesión</a>
-            : <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={() => {setOption('login')}}>Iniciar sesión</a>
+            : <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={() => {navigate('/login')}}>Iniciar sesión</a>
             }
              
         </div>

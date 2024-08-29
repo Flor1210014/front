@@ -3,6 +3,7 @@ import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { Card } from 'primereact/card';
 import { useNavigate } from "react-router-dom";
+import { Layout } from './Layout';
 
 
 
@@ -25,7 +26,13 @@ export const Login = ({setToken, setOption}) => {
                         }
                     )})
             .then(response => response.json())
-            .then(data => { navigate('/home'); localStorage.setItem('token',data.token);});
+            .then(data => { 
+                setToken(data.token); 
+                navigate('/home');  
+                localStorage.setItem('token',data.token);
+             }).catch(error => {
+                console.log(error)
+             });
 		}
   }
 
@@ -78,7 +85,7 @@ export const Login = ({setToken, setOption}) => {
                                     <div className="mt-3">
                                         <span
                                             className="text-600 font-medium line-height-3">¿Aun no tienes cuenta?</span>
-                                        <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={() => setOption('register')}>Registrate</a>
+                                        <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer" onClick={() => navigate('/registro')}>Registrate</a>
                                     </div>
                                 </div>
                             </div>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 import { FloatLabel } from "primereact/floatlabel";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
          
 
 export const Register = ({setToken, token, setOption}) => {
@@ -16,8 +16,22 @@ export const Register = ({setToken, token, setOption}) => {
   const [title, setTitle] = useState('Registrar');
   const navigate = useNavigate();
 
-  
+  const location = useLocation();
 
+
+
+  React.useEffect(() => {
+    // get userId
+    let userId = location.state.userId;
+    console.log(userId);
+    
+    
+  }, [location?.state?.userId]);
+
+//   useEffect(() => {
+//    console.log(user);
+   
+//   }, [username]);
 
   const onButtonClick = () => {
 
@@ -35,11 +49,10 @@ export const Register = ({setToken, token, setOption}) => {
                     "client": 234,
                     "email": email,
                     "fechaalta": "2024-08-26",
-                    "fechabaja": "2024-08-26",
+                    
                     "status": "A",
                     "intentos":0,
-                    "fecharevocado": "2024-08-26",
-                    "fecha_vigencia": "2024-08-26",
+                   
                     "no_acceso": 1,
                     "apellido_paterno": apellido_paterno,
                     "apellido_materno": apellido_materno,
@@ -49,7 +62,7 @@ export const Register = ({setToken, token, setOption}) => {
 				  }
 			  )})
 	  .then((response) => response.json())
-	   .then((data) => {setToken(data.token); navigate("/home");});
+	   .then((data) => {setToken(data.token); navigate("/home"); localStorage.setItem('token',data.token);});
     
 		}
         

@@ -12,7 +12,7 @@ import UsuariosTable from './pages/UsuariosTable';
 
 function App() {
   const storedData = localStorage.getItem('token');
-  const [sessionData, setSessionData] = useState(storedData);
+  const [token, setToken] = useState(storedData);
   const [option, setOption] = useState('login');
  
 
@@ -21,11 +21,11 @@ function App() {
       <PrimeReactProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<Layout sessionData={sessionData} setSessionData={setSessionData}  />}>
+          <Route path="/" element={<Layout token={token} setToken={setToken}  />}>
             <Route path="/home" element={<Home />} />
-            <Route path="/login" element={<Login setSessionData={setSessionData}/>} />
-            <Route path="/registro" element={<Register setSessionData={setSessionData} sessionData={sessionData}/>} />
-            <Route path="/usuarios-table" element={ <UsuariosTable sessionData={sessionData}/>} />
+            <Route path="/login" element={<Login setToken={setToken}/>} />
+            <Route path="/registro" element={<Register setToken={setToken} token={token}/>} />
+            <Route path="/usuarios-table" element={ <UsuariosTable token={token}/>} />
             {/* <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} /> */} 
           </Route>

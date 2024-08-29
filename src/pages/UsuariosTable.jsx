@@ -76,6 +76,15 @@ export default function UsuariosTable(token) {
         
         
     };
+    const dateTemplate = (rowData) => {
+        const shortFunciona = new Date (rowData.fechaalta); // Forma correcta, evita errores
+        return <>
+        {shortFunciona.toLocaleDateString()}
+       
+        </>
+        
+        
+    };
     const activos = () => {
         setAux(usuarios.filter(user => user.status === 'A'))
     }
@@ -163,7 +172,7 @@ export default function UsuariosTable(token) {
                 <DataTable value={aux} >
                     <Column field="nombre" header="nombre"></Column>
                     <Column field="login" header="login"></Column>
-                    <Column field="fechaalta" dataType="date" header="Alta"></Column>
+                    <Column field="fechaalta" body={dateTemplate} header="Alta"></Column>
                     <Column field="status" header="Estatus"></Column>
                     <Column field="" header="Accion" body={actionBodyTemplate}>Editar baja</Column>
                 </DataTable>

@@ -107,7 +107,8 @@ export const Register = ({setToken, token}) => {
   const onButtonClick = () => {
 
     if(username !== "" && password !== ""){
-        if(location?.state?.user === null){
+        console.log(location?.state?.user);
+        if(location?.state?.user === undefined){
             registrar();
         }else{
             actualizar();

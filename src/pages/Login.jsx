@@ -24,8 +24,8 @@ export const Login = ({setToken, setOption}) => {
                     "password": password
                         }
                     )})
-            .then(response => response.json)
-            .then(data => {setToken(data.token); navigate('/home');});
+            .then(response => response.json())
+            .then(data => { navigate('/home'); localStorage.setItem('token',data.token);});
 		}
   }
 

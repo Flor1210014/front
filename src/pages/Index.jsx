@@ -8,6 +8,7 @@ import { Outlet } from 'react-router-dom';
 
 
 export const Index = (props) => {
+  const data = localStorage.getItem('token');
   const [token, setToken] = useState('');
   const [option, setOption] = useState('login');
 

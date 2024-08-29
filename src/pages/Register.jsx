@@ -48,7 +48,7 @@ export const Register = ({setToken, token, setOption}) => {
                     "role":"ADMIN"
 				  }
 			  )})
-	  .then((response) => response.json)
+	  .then((response) => response.json())
 	   .then((data) => {setToken(data.token); navigate("/home");});
     
 		}

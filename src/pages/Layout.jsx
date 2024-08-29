@@ -5,7 +5,7 @@ import { Outlet } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
 
-export const Layout = ({token, setToken, setOption}) => {
+export const Layout = ({sessionData, setSessionData}) => {
     const navigate = useNavigate();
     const items = [
         {
@@ -26,13 +26,14 @@ export const Layout = ({token, setToken, setOption}) => {
     ];
 
     const onButtonClick = () => {
-        setToken('');
+        setSessionData(null);
+        localStorage.removeItem('token');
       }
 
     const start = <img alt="logo" src="https://primefaces.org/cdn/primereact/images/logo.png" height="40" className="mr-2"></img>;
     const end = (
         <div className="flex align-items-center gap-2">
-            {token !== '' 
+            {sessionData !== null 
             ? <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={onButtonClick}>Cerrar sesión</a>
             : <a className="font-medium no-underline ml-2 text-blue-500 cursor-pointer mr-5" onClick={() => {navigate('/login')}}>Iniciar sesión</a>
             }

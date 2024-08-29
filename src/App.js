@@ -26,8 +26,6 @@ function App() {
             <Route path="/login" element={<Login setToken={setToken}/>} />
             <Route path="/registro" element={<Register setToken={setToken} token={token}/>} />
             <Route path="/usuarios-table" element={ <UsuariosTable token={token}/>} />
-            {/* <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} /> */} 
           </Route>
         </Routes>
       </Router>

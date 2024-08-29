@@ -5,7 +5,7 @@ import { FloatLabel } from "primereact/floatlabel";
 import { useLocation, useNavigate } from "react-router-dom";
          
 
-export const Register = ({setToken, token, setOption}) => {
+export const Register = ({setToken, token}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [nombre, setNombre] = useState('');
@@ -20,20 +20,56 @@ export const Register = ({setToken, token, setOption}) => {
 
 
 
-  React.useEffect(() => {
+  useEffect(() => {
     // get userId
-    let userId = location.state.userId;
-    console.log(userId);
+    let user = location?.state?.user;
+    if(user){
+        console.log(user);
+        setTitle('Actualizar');
+        setUsername(user.login);
+        setNombre(user.nombre);
+        setClient(user.client);
+        setEmail(user.email);
+        setApellido_paterno(user.apellido_paterno);
+        setApellido_materno(user.apellido_materno);
+    }
     
+  }, [location?.state?.user]);
+  
+  const actualizar = () => {
+    console.log("actualizar");
+
+    if(username !== "" && password !== "" && token?.token !== null){
+			fetch('/api/v1/usuario/update',{	method: 'POST',	headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer '+token+'',
+			  },
+			  body: JSON.stringify(
+				  {
+                    "login" : username,
+                    "username": username,
+                    "password":password,
+                    "nombre": nombre,
+                    "client": 234,
+                    "email": email,
+                   
+                   
+                    "no_acceso": 1,
+                    "apellido_paterno": apellido_paterno,
+                    "apellido_materno": apellido_materno,
+                    "area": 1,
+                    "fechamodificacion": "2024-08-26",
+                    "role":"ADMIN"
+				  }
+			  )})
+	    .then((response) => response.json())
+	    .then((data) => { navigate("/usuarios-table"); console.log(data)});
     
-  }, [location?.state?.userId]);
-
-//   useEffect(() => {
-//    console.log(user);
-   
-//   }, [username]);
-
-  const onButtonClick = () => {
+		}
+        
+  }
+  const registrar = () => {
 
     if(username !== "" && password !== ""){
 			fetch('/auth/register',{	method: 'POST',	headers: {
@@ -61,8 +97,21 @@ export const Register = ({setToken, token, setOption}) => {
                     "role":"ADMIN"
 				  }
 			  )})
-	  .then((response) => response.json())
-	   .then((data) => {setToken(data.token); navigate("/home"); localStorage.setItem('token',data.token);});
+	    .then((response) => response.json())
+	    .then((data) => {setToken(data.token); navigate("/home"); localStorage.setItem('token',data.token);});
+    
+		}
+        
+  }
+
+  const onButtonClick = () => {
+
+    if(username !== "" && password !== ""){
+        if(location?.state?.user === null){
+            registrar();
+        }else{
+            actualizar();
+        }
     
 		}
         
@@ -87,7 +136,7 @@ export const Register = ({setToken, token, setOption}) => {
                 <label htmlFor="username">Login</label>
             </FloatLabel>
             <FloatLabel>
-                <InputText id="password" className="p-inputtext-sm" value={password} onChange={(e) => setPassword(e.target.value)} />
+                <InputText id="password" type="password" className="p-inputtext-sm" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <label htmlFor="password">Contraseña</label>
             </FloatLabel>
         </div>
@@ -106,12 +155,12 @@ export const Register = ({setToken, token, setOption}) => {
             
            
             <FloatLabel>
-                <InputText id="username" className="p-inputtext-sm mr-3" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <label htmlFor="username">Correo</label>
+                <InputText id="email" className="p-inputtext-sm mr-3" value={email} onChange={(e) => setEmail(e.target.value)} />
+                <label htmlFor="email">Correo</label>
             </FloatLabel>
             <FloatLabel>
-                <InputText id="username" className="p-inputtext-sm" />
-                <label htmlFor="username">Area</label>
+                <InputText id="area" className="p-inputtext-sm" />
+                <label htmlFor="area">Area</label>
             </FloatLabel>
         </div>
         <div className="row flex justify-content-center mb-4">

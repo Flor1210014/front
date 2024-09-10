@@ -98,7 +98,11 @@ export const Register = ({setToken, token}) => {
 				  }
 			  )})
 	    .then((response) => response.json())
-	    .then((data) => {setToken(data.token); navigate("/home"); localStorage.setItem('token',data.token);});
+	    .then((data) => {
+            setToken(data.token); 
+            navigate("/home"); 
+            localStorage.setItem('token',data.token);
+        });
     
 		}
         

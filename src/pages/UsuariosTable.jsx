@@ -18,6 +18,7 @@ export default function UsuariosTable(token) {
     useEffect(() => {    
         
         if(token?.token !== null){
+            console.log(token.token);
             fetch('/api/v1/usuarios',{
                 headers: {
                     'Accept': 'application/json',
